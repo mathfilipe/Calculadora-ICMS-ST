@@ -5,14 +5,12 @@
   font-family:Arial, sans-serif;
 }
 
-body{
-  background:#0f172a;
-  color:white;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:30px;
+body {
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+  margin: 0;
+  padding: 30px;
 }
 
 .container{
