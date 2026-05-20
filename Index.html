@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ICMS-ST Avançado</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Calculadora ICMS-ST</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
@@ -14,125 +15,237 @@
 
     <div class="title">
       <h1>ICMS-ST por Produto</h1>
-      <p>Faça o calculo da sua operação </p>
- 
+      <p>Faça o cálculo da sua operação tributária</p>
     </div>
 
-    <!-- PRODUTO -->
-    <div class="grid">
+    <div class="main-layout">
 
-      <div class="input-group">
-        <label>Nome do Produto</label>
-        <input type="text" id="nomeProduto" placeholder="Ex: Refrigerante">
+      <!-- ESQUERDA -->
+      <div class="panel">
+
+        <div class="grid">
+
+          <div class="input-group">
+            <label>Nome do Produto</label>
+            <input
+              type="text"
+              id="nomeProduto"
+              placeholder="Ex: Refrigerante"
+            >
+          </div>
+
+          <div class="input-group">
+            <label>NCM</label>
+            <input
+              type="text"
+              id="ncm"
+              placeholder="Ex: 2202.10.00"
+            >
+          </div>
+
+          <div class="input-group">
+            <label>Valor Produto (R$)</label>
+            <input
+              type="number"
+              id="produto"
+              placeholder="0.00"
+            >
+          </div>
+
+          <div class="input-group">
+            <label>IPI (R$)</label>
+            <input
+              type="number"
+              id="ipi"
+              placeholder="0.00"
+            >
+          </div>
+
+          <div class="input-group">
+            <label>Frete (R$)</label>
+            <input
+              type="number"
+              id="frete"
+              placeholder="0.00"
+            >
+          </div>
+
+          <div class="input-group">
+            <label>Outras Despesas (R$)</label>
+            <input
+              type="number"
+              id="despesas"
+              placeholder="0.00"
+            >
+          </div>
+
+          <div class="input-group">
+            <label>MVA (%)</label>
+            <input
+              type="number"
+              id="mva"
+              placeholder="40"
+            >
+          </div>
+
+          <div class="input-group">
+            <label>Redução BC (%)</label>
+            <input
+              type="number"
+              id="reducao"
+              placeholder="0"
+            >
+          </div>
+
+          <div class="input-group">
+            <label>ICMS Próprio (%)</label>
+            <input
+              type="number"
+              id="icmsProprio"
+              placeholder="12"
+            >
+          </div>
+
+        </div>
+
+        <div class="buttons">
+
+          <button
+            class="btn-primary"
+            onclick="adicionarProduto()"
+          >
+            Adicionar Produto
+          </button>
+
+          <button
+            class="btn-success"
+            onclick="calcularICMSST()"
+          >
+            Calcular Total
+          </button>
+
+          <button
+            class="btn-danger"
+            onclick="limparCarrinho()"
+          >
+            Limpar
+          </button>
+
+        </div>
+
       </div>
 
-      <div class="input-group">
-        <label>NCM</label>
-        <input type="text" id="ncm" placeholder="Ex: 2202.10.00">
-      </div>
+      <!-- DIREITA -->
+      <div class="panel">
 
-      <div class="input-group">
-        <label>Valor Produto (R$)</label>
-        <input type="number" id="produto" placeholder="0.00">
-      </div>
+        <div class="cards">
 
-      <div class="input-group">
-        <label>IPI (R$)</label>
-        <input type="number" id="ipi" placeholder="0.00">
-      </div>
+          <div class="card">
+            <h3>Total Base ST</h3>
+            <p id="baseST">R$ 0,00</p>
+          </div>
 
-      <div class="input-group">
-        <label>Frete (R$)</label>
-        <input type="number" id="frete" placeholder="0.00">
-      </div>
+          <div class="card">
+            <h3>Total ICMS Próprio</h3>
+            <p id="icmsProprioTotal">R$ 0,00</p>
+          </div>
 
-      <div class="input-group">
-        <label>Outras Despesas (R$)</label>
-        <input type="number" id="despesas" placeholder="0.00">
-      </div>
+          <div class="card">
+            <h3>Total ICMS-ST</h3>
+            <p id="icmsST">R$ 0,00</p>
+          </div>
 
-      <div class="input-group">
-        <label>MVA (%)</label>
-        <input type="number" id="mva" placeholder="40">
-      </div>
+        </div>
 
-      <div class="input-group">
-        <label>Redução BC (%)</label>
-        <input type="number" id="reducao" placeholder="0">
-      </div>
+        <div class="table-container">
 
-      <div class="input-group">
-        <label>ICMS Próprio (%)</label>
-        <input type="number" id="icmsProprio" placeholder="12">
+          <table>
+
+            <thead>
+              <tr>
+                <th>Produto</th>
+                <th>NCM</th>
+                <th>Valor</th>
+                <th>MVA</th>
+                <th>ICMS-ST</th>
+              </tr>
+            </thead>
+
+            <tbody id="tabelaProdutos">
+
+              <tr>
+                <td colspan="5">
+                  Nenhum produto adicionado.
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <div class="resumo">
+
+          <h2>Resumo da Operação</h2>
+
+          <p>
+            Quantidade de produtos:
+            <strong id="qtdProdutos">0</strong>
+          </p>
+
+          <p>
+            Valor total da operação:
+            <strong id="valorTotalOperacao">
+              R$ 0,00
+            </strong>
+          </p>
+
+          <p>
+            Total ICMS-ST:
+            <strong id="resumoICMSST">
+              R$ 0,00
+            </strong>
+          </p>
+
+        </div>
+
       </div>
 
     </div>
 
-    <!-- BOTÃO -->
-    <button class="btn" onclick="adicionarProduto()">
-      Adicionar Produto
-    </button>
+    <footer class="footer">
 
-    <button class="btn" onclick="limparCarrinho()">
-      Limpar
-    </button>
+      <p>
+        Esta é uma calculadora básica para fins de apoio
+        e simulação tributária. Os valores apresentados podem
+        variar conforme legislação estadual, NCM,
+        regime tributário e regras fiscais aplicáveis.
+        Recomenda-se sempre a validação com contador
+        ou consultoria especializada.
+      </p>
 
-    <button class="btn" onclick="calcularICMSST()">
-      Calcular Total
-    </button>
+      <div class="assinatura">
 
-    <hr style="margin:30px 0; border:1px solid #1e293b;">
+        Desenvolvido por
+        <strong>Matheus Rosa</strong>
 
-    <!--  RESULTADOS -->
-    <div class="resultados">
+        <br>
 
-      <div class="card">
-        <h3>Total Base ST</h3>
-        <p id="baseST">R$ 0,00</p>
+        <a
+          href="https://www.linkedin.com/in/matheus-rosa-3754681a3/"
+          target="_blank"
+        >
+          LinkedIn
+        </a>
+
       </div>
 
-      <div class="card">
-        <h3>Total ICMS Próprio</h3>
-        <p id="icmsProprioTotal">R$ 0,00</p>
-      </div>
-
-      <div class="card">
-        <h3>Total ICMS-ST</h3>
-        <p id="icmsST">R$ 0,00</p>
-      </div>
-
-    </div>
-
-    <!--  RESUMO -->
-    <div id="resumo" class="formula">
-      <h2>Resumo operação</h2>
-      <p>Nenhum produto adicionado.</p>
-    </div>
+    </footer>
 
   </div>
 
   <script src="app.js"></script>
-
-  <footer class="footer">
-
-  <p>
-    ⚠️ Esta é uma calculadora básica para fins de apoio e simulação tributária.
-    Os valores apresentados podem variar conforme legislação estadual,
-    NCM, regime tributário e regras fiscais aplicáveis.
-    Recomenda-se sempre a validação com contador ou consultoria especializada.
-  </p>
-
-  <div class="assinatura">
-    Desenvolvido por <strong>Matheus Rosa</strong>
-    <br>
-
-    <a href="https://www.linkedin.com/in/matheus-rosa-3754681a3/"
-       target="_blank">
-       LinkedIn
-    </a>
-  </div>
-
-</footer>
 
 </body>
 </html>
