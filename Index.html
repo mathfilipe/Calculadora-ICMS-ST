@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Calculadora ICMS-ST</title>
 
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -14,8 +17,13 @@
   <div class="container">
 
     <div class="title">
-      <h1>ICMS-ST por Produto</h1>
-      <p>Faça o cálculo da sua operação tributária</p>
+
+      <h1>Calculadora ICMS-ST</h1>
+
+      <p>
+        Cálculo de Substituição Tributária por produto
+      </p>
+
     </div>
 
     <div class="main-layout">
@@ -27,107 +35,67 @@
 
           <div class="input-group">
             <label>Nome do Produto</label>
-            <input
-              type="text"
-              id="nomeProduto"
-              placeholder="Ex: Refrigerante"
-            >
+            <input type="text" id="nomeProduto" placeholder="Ex: Refrigerante">
           </div>
 
           <div class="input-group">
             <label>NCM</label>
-            <input
-              type="text"
-              id="ncm"
-              placeholder="Ex: 2202.10.00"
-            >
+            <input type="text" id="ncm" placeholder="Ex: 2202.10.00">
           </div>
 
           <div class="input-group">
             <label>Valor Produto (R$)</label>
-            <input
-              type="number"
-              id="produto"
-              placeholder="0.00"
-            >
+            <input type="number" id="produto" placeholder="0.00">
           </div>
 
           <div class="input-group">
             <label>IPI (R$)</label>
-            <input
-              type="number"
-              id="ipi"
-              placeholder="0.00"
-            >
+            <input type="number" id="ipi" placeholder="0.00">
           </div>
 
           <div class="input-group">
             <label>Frete (R$)</label>
-            <input
-              type="number"
-              id="frete"
-              placeholder="0.00"
-            >
+            <input type="number" id="frete" placeholder="0.00">
           </div>
 
           <div class="input-group">
             <label>Outras Despesas (R$)</label>
-            <input
-              type="number"
-              id="despesas"
-              placeholder="0.00"
-            >
+            <input type="number" id="despesas" placeholder="0.00">
           </div>
 
           <div class="input-group">
             <label>MVA (%)</label>
-            <input
-              type="number"
-              id="mva"
-              placeholder="40"
-            >
+            <input type="number" id="mva" placeholder="40">
           </div>
 
           <div class="input-group">
             <label>Redução BC (%)</label>
-            <input
-              type="number"
-              id="reducao"
-              placeholder="0"
-            >
+            <input type="number" id="reducao" placeholder="0">
           </div>
 
           <div class="input-group">
             <label>ICMS Próprio (%)</label>
-            <input
-              type="number"
-              id="icmsProprio"
-              placeholder="12"
-            >
+            <input type="number" id="icmsProprio" placeholder="12">
+          </div>
+
+          <div class="input-group">
+            <label>ICMS Destino (%)</label>
+            <input type="number" id="icmsDestino" placeholder="18">
           </div>
 
         </div>
 
         <div class="buttons">
 
-          <button
-            class="btn-primary"
-            onclick="adicionarProduto()"
-          >
+          <button class="btn-primary" onclick="adicionarProduto()">
             Adicionar Produto
           </button>
 
-          <button
-            class="btn-success"
-            onclick="calcularICMSST()"
-          >
+          <button class="btn-success" onclick="calcularICMSST()">
             Calcular Total
           </button>
 
-          <button
-            class="btn-danger"
-            onclick="limparCarrinho()"
-          >
+          <button class="btn-danger" onclick="limparCarrinho()">
             Limpar
           </button>
 
@@ -162,6 +130,7 @@
           <table>
 
             <thead>
+
               <tr>
                 <th>Produto</th>
                 <th>NCM</th>
@@ -169,6 +138,7 @@
                 <th>MVA</th>
                 <th>ICMS-ST</th>
               </tr>
+
             </thead>
 
             <tbody id="tabelaProdutos">
@@ -221,8 +191,6 @@
         e simulação tributária. Os valores apresentados podem
         variar conforme legislação estadual, NCM,
         regime tributário e regras fiscais aplicáveis.
-        Recomenda-se sempre a validação com contador
-        ou consultoria especializada.
       </p>
 
       <div class="assinatura">
@@ -232,10 +200,7 @@
 
         <br>
 
-        <a
-          href="https://www.linkedin.com/in/matheus-rosa-3754681a3/"
-          target="_blank"
-        >
+        <a href="https://www.linkedin.com/in/matheus-rosa-3754681a3/" target="_blank">
           LinkedIn
         </a>
 
@@ -248,4 +213,5 @@
   <script src="app.js"></script>
 
 </body>
+
 </html>
